@@ -8,6 +8,8 @@ const app = new App({
 	appToken: process.env.SLACK_APP_TOKEN,
 });
 
+
+
 // Find conversation ID using the conversations.list method
 async function findConversation(name) {
 	try {
@@ -16,6 +18,10 @@ async function findConversation(name) {
 			// The token you used to initialize your app
 			token: process.env.SLACK_BOT_TOKEN,
 		});
+
+		const answer = await app.client.files.sharedPublicURL(process.env.SLACK_BOT_TOKEN, 'F02KFQV0GG5')
+
+		console.log(answer)
 
 		for (const channel of result.channels) {
 			if (channel.name === name) {
