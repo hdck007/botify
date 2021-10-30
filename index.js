@@ -50,10 +50,10 @@ let webApiUrl =
 // 	.then((result) => console.log(result));
 
 const app = new App({
-	token: process.env.SLACK_BOT_TOKEN,
-	signingSecret: process.env.SLACK_SIGNING_SECRET,
-	socketMode: true,
-	appToken: process.env.SLACK_APP_TOKEN,
+  token: process.env.SLACK_BOT_TOKEN,
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
+  socketMode: true,
+  appToken: process.env.SLACK_APP_TOKEN,
 });
 
 async function findConversation(name) {
@@ -80,8 +80,8 @@ async function findConversation(name) {
 	}
 }
 
-app.event('message', async ({ event, client }) => {
-	let conversationHistory;
+app.event("message", async ({ event, client }) => {
+  let conversationHistory;
 
 	console.log(event);
 	let channelId = await findConversation('harry');
@@ -91,7 +91,7 @@ app.event('message', async ({ event, client }) => {
 			channel: channelId,
 		});
 
-		conversationHistory = result.messages;
+    conversationHistory = result.messages;
 
 		if (event.text === 'end') {
 			let value = true;
@@ -103,14 +103,14 @@ app.event('message', async ({ event, client }) => {
 			});
 			filtered.reverse();
 
-			let message = '';
-			filtered.forEach((element) => (message += String(element.text)));
+      let message = "";
+      filtered.forEach((element) => (message += String(element.text)));
 
-			console.log(message);
-		}
-	} catch (error) {
-		console.error(error);
-	}
+      console.log(message);
+    }
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 (async () => {
